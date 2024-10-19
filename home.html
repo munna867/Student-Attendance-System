@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System</title>
+    <!-- Custom CSS link -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Font Awesome CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- Sheetjs link for excle sheet -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script> <!-- Add this to include SheetJS -->
+    <script src="js/downloadexls.js" defer></script>
+
+</head>
+
+<body>
+    <!-- Sidebar code here -->
+
+    <div class="left">
+        <nav class="sidebar">
+            <header>
+                <div class="image-text">
+                    <span class="image">
+                        <img src="" alt="logo">
+                    </span>
+                    <div class="text header-text">
+                        <span class="name">Attendance</span>
+                    </div>
+                </div>
+            </header>
+            <div class="menu-bar">
+                <div class="menu">
+                    <ul class="menu-list">
+                        <li class="nav-link sidebar-border">
+                            <a href="./home.html">
+                                <i class="fa-solid fa-house icon"></i>
+                                <span class="text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="./classes.html">
+                                <i class="fa-solid fa-graduation-cap icon"></i>
+                                <span class="text">Classes</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="./teacher.html">
+                                <i class="fa-solid fa-chalkboard-user icon"></i>
+                                <span class="text">Teacher's</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="./student.html">
+                                <i class="fa-solid fa-user-tie icon"></i>
+                                <span class="text">Student</span>
+                            </a>
+                        </li>
+                        <li class="nav-link sidebar-border">
+                            <a href="./attendance.html">
+                                <i class="fa-solid fa-chart-simple icon"></i>
+                                <span class="text">Attendance</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="#" id="logoutButton">
+                                <i class="fa-solid fa-right-from-bracket icon"></i>
+                                <span class="text">Log Out</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom-content">
+                <div class="theme-checkbox-container">
+                    <input type="checkbox" id="theme-toggle" class="theme-checkbox">
+                </div>
+            </div>
+
+        </nav>
+    </div>
+    <!-- Sidebar code ends here -->
+
+    <!-- Navbar code here -->
+    <div class="navigation">
+        <div class="navbar">
+            <div class="menu" id="menuButton">
+                <i class="fa-solid fa-bars menu-btn"></i>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Search here">
+                <i class="fa-solid fa-magnifying-glass search-img"></i>
+            </div>
+            <div class="profile">
+                <img id="profileImage" src="./images/Profile.png" alt="profile">
+            </div>
+        </div>
+    </div>
+    <!-- Navbar code ends here -->
+
+    <!-- Right section start here -->
+
+    <div class="right">
+        <div class="box">
+            <span>Classes </span>
+            <span id="classCount1"></span>
+            <i class="fa-solid fa-graduation-cap icon"></i>
+        </div>
+
+
+        <div class="box" id="box2">
+            <span>Teacher</span>
+            <span id="teacherCount1"></span>
+            <i class="fa-solid fa-chalkboard-user icon2"></i>
+        </div>
+        <div class="box" id="box3">
+            <span>Student</span>
+            <span id="studentCount1"></span>
+            <i class="fa-solid fa-chart-simple icon2"></i>
+        </div>
+        <div class="box" id="box3">
+            <span class="box3">Extra Lecture</span>
+            <span id="Extralec1">0</span>
+            <i class="fa-solid fa-chalkboard icon3"></i>
+        </div>
+    </div>
+
+    <div class="main-right-down">
+        <div class="right-down">
+            <div class="attendance-sec">
+                <span>Today's Attendance</span>
+                <div class="attendance-table">
+                    <table id="attendance">
+                        <thead>
+                            <tr>
+                                <th>Class Name</th>
+                                <th>Date</th>
+                                <th>Present</th> <!-- Count of present students -->
+                                <th>Absent</th> <!-- Count of absent students -->
+                                <th>Action</th> <!-- Column for action -->
+                                <th>Delete Record</th><!-- Column for delete action -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Attendance records will be inserted here -->
+                        </tbody>
+                    </table>
+
+
+                </div>
+            </div>
+
+
+            <div class="teacher-sec">
+                <div class="tec-sec">
+                    <span>Teacher's info</span>
+                    <table cellspacing="0" id="teachers" border="0">
+                        <thead>
+                            <tr>
+                                <th>Teacher Name</th>
+                                <th>Department</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Teachers will be appended here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="js/script.js"></script>
+    <script src="js/classes.js"></script>
+    <script src="js/teachers.js"></script>
+    <script src="js/student.js"></script>
+    <script src="js/downloadexls.js"></script>
+
+
+
+
+
+
+</body>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+
+
+
+<script>
+    // Function to load and display attendance records
+   // Function to load and display attendance records
+// function displayAttendanceRecords() {
+//     fetch('http://localhost:3000/attendance') // Adjust the endpoint if needed
+//         .then(response => response.json())
+//         .then(data => {
+//             const tbody = document.querySelector('#attendance tbody');
+//             tbody.innerHTML = ''; // Clear previous data
+
+//             data.forEach(attendance => {
+//                 // Get attendance records for this class and date
+//                 const attendanceRecords = attendance.attendanceRecords || [];
+
+//                 // Calculate present and absent counts
+//                 const presentCount = attendanceRecords.filter(record => record.status === 'present').length;
+//                 const absentCount = attendanceRecords.filter(record => record.status === 'absent').length;
+
+//                 const row = document.createElement('tr');
+//                 row.innerHTML = `
+//                     <td>${attendance.className}</td>
+//                     <td>${attendance.date}</td>
+//                     <td>${presentCount}</td> <!-- Count of present students -->
+//                     <td>${absentCount}</td>  <!-- Count of absent students -->
+//                     <td>
+//                         <div class="actions">
+//                             <button class="report-btn" id="export-btn" data-id="${attendance.id}" style="background-color: green; color: white; border: none; padding: 5px 13px; cursor: pointer; position: relative; top: -10px;">Report</button>
+//                         </div>
+//                     </td>
+//                     <td>
+//                         <button class="delete-btn" data-id="${attendance.id}" style="background-color: red; color: white; border: none; padding: 5px 13px; cursor: pointer; position: relative; top: -10px;">Delete</button>
+//                     </td>
+//                 `;
+
+//                 tbody.appendChild(row);
+//             });
+
+//             // Add event listeners for the report and delete buttons
+//             const reportButtons = document.querySelectorAll('.report-btn');
+//             reportButtons.forEach(button => {
+//                 button.addEventListener('click', reportAttendanceRecord);
+//             });
+
+//             const deleteButtons = document.querySelectorAll('.delete-btn');
+//             deleteButtons.forEach(button => {
+//                 button.addEventListener('click', deleteAttendanceRecord);
+//             });
+//         })
+//         .catch(error => {
+//             console.error('Error loading attendance records:', error);
+//         });
+// }
+
+// // Function to report attendance record
+// function reportAttendanceRecord(event) {
+//     const recordId = event.target.getAttribute('data-id');
+//     alert(`Reporting attendance record with ID: ${recordId}`);
+//     // You can add functionality here for the report action if needed
+// }
+
+// // Function to delete attendance record
+// function deleteAttendanceRecord(event) {
+//     const recordId = event.target.getAttribute('data-id');
+
+//     fetch(`http://localhost:3000/attendance/${recordId}`, {
+//         method: 'DELETE',
+//     })
+//     .then(response => {
+//         if (response.ok) {
+//             // Refresh the attendance records after deletion
+//             displayAttendanceRecords();
+//             alert('Attendance record deleted successfully!');
+//         } else {
+//             alert('Failed to delete attendance record.');
+//         }
+//     })
+//     .catch(error => {
+//         console.error('Error deleting attendance record:', error);
+//     });
+// }
+
+// // Call the function to display records when the page loads
+// document.addEventListener('DOMContentLoaded', displayAttendanceRecords);
+
+// document.getElementById('export-btn').addEventListener('click', function () {
+    // Fetch data from the JSON server
+//     fetch('http://localhost:3000/attendance') // Replace with your actual endpoint
+//         .then(response => response.json())
+//         .then(jsonData => {
+//             // Convert JSON data to a worksheet
+//             const worksheet = XLSX.utils.json_to_sheet(jsonData);
+
+//             // Create a new workbook and append the worksheet
+//             const workbook = XLSX.utils.book_new();
+//             XLSX.utils.book_append_sheet(workbook, worksheet, "Attendance");
+
+//             // Export the Excel file
+//             XLSX.writeFile(workbook, "attendance.xlsx");
+//         })
+//         .catch(error => console.error('Error fetching data:', error));
+// });
+
+
+
+
+
+
+
+// Function to load and display attendance records
+function displayAttendanceRecords() {
+    fetch('http://localhost:3000/attendance') // Adjust the endpoint if needed
+        .then(response => response.json())
+        .then(data => {
+            const tbody = document.querySelector('#attendance tbody');
+            tbody.innerHTML = ''; // Clear previous data
+
+            data.forEach(attendance => {
+                // Get attendance records for this class and date
+                const attendanceRecords = attendance.attendanceRecords || [];
+
+                // Calculate present and absent counts
+                const presentCount = attendanceRecords.filter(record => record.status === 'present').length;
+                const absentCount = attendanceRecords.filter(record => record.status === 'absent').length;
+
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${attendance.className}</td>
+                    <td>${attendance.date}</td>
+                    <td>${presentCount}</td> <!-- Count of present students -->
+                    <td>${absentCount}</td>  <!-- Count of absent students -->
+                    <td>
+                        <div class="actions">
+                            <button class="report-btn" data-id="${attendance.id}" style="background-color: green; color: white; border: none; padding: 5px 13px; cursor: pointer; position: relative; top: -10px;">Report</button>
+                        </div>
+                    </td>
+                    <td>
+                        <button class="delete-btn" data-id="${attendance.id}" style="background-color: red; color: white; border: none; padding: 5px 13px; cursor: pointer; position: relative; top: -10px;">Delete</button>
+                    </td>
+                `;
+
+                tbody.appendChild(row);
+            });
+
+            // Add event listeners for the report and delete buttons
+            const reportButtons = document.querySelectorAll('.report-btn');
+            reportButtons.forEach(button => {
+                button.addEventListener('click', reportAttendanceRecord);
+            });
+
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', deleteAttendanceRecord);
+            });
+        })
+        .catch(error => {
+            console.error('Error loading attendance records:', error);
+        });
+}
+
+// Function to report attendance record and export to Excel
+function reportAttendanceRecord(event) {
+    const recordId = event.target.getAttribute('data-id');
+
+    // Fetch the specific attendance record from the server
+    fetch(`http://localhost:3000/attendance/${recordId}`)
+        .then(response => response.json())
+        .then(jsonData => {
+            // Process the data to create an array with student names and attendance status
+            const attendanceRecords = jsonData.attendanceRecords || [];
+            
+            // Calculate the total present and absent counts
+            const presentCount = attendanceRecords.filter(record => record.status === 'present').length;
+            const absentCount = attendanceRecords.filter(record => record.status === 'absent').length;
+
+            // Prepare the Excel data
+            const exportData = [];
+
+            // Add class name and date as the title
+            exportData.push({ A: `Class: ${jsonData.className}` });
+            exportData.push({ A: `Date: ${jsonData.date}` });
+            exportData.push({}); // Empty row for spacing
+
+            // Add headers for student name and attendance status
+            exportData.push({ A: "Student Name", B: "Attendance Status" });
+
+            // Add student names and their attendance status
+            attendanceRecords.forEach(record => {
+                exportData.push({
+                    A: record.studentName,
+                    B: record.status === 'present' ? 'Present' : 'Absent'
+                });
+            });
+
+            // Add total counts of present and absent students
+            exportData.push({}); // Empty row for spacing
+            exportData.push({ A: "Total Present", B: presentCount });
+            exportData.push({ A: "Total Absent", B: absentCount });
+
+            // Convert data to worksheet
+            const worksheet = XLSX.utils.json_to_sheet(exportData, { skipHeader: true });
+
+            // Merging cells for the title row (class name and date)
+            // worksheet['!merges'] = [
+            //     { s: { r: 0, c: 0 }, e: { r: 0, c: 1 } } // Merging A1 and B1
+            // ];
+
+            // Add worksheet to workbook
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Attendance");
+
+            // Export the Excel file with a dynamic name
+            const fileName = `attendance_${jsonData.className}_${jsonData.date}.xlsx`;
+            XLSX.writeFile(workbook, fileName);
+        })
+        .catch(error => console.error('Error fetching data:', error));
+}
+
+
+
+
+// Function to delete attendance record
+function deleteAttendanceRecord(event) {
+    const recordId = event.target.getAttribute('data-id');
+
+    fetch(`http://localhost:3000/attendance/${recordId}`, {
+        method: 'DELETE',
+    })
+    .then(response => {
+        if (response.ok) {
+            // Refresh the attendance records after deletion
+            displayAttendanceRecords();
+            alert('Attendance record deleted successfully!');
+        } else {
+            alert('Failed to delete attendance record.');
+        }
+    })
+    .catch(error => {
+        console.error('Error deleting attendance record:', error);
+    });
+}
+
+// Call the function to display records when the page loads
+document.addEventListener('DOMContentLoaded', displayAttendanceRecords);
+
+
+
+
+
+
+</script>
+
+</html>

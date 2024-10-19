@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System - Attendance</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="left">
+        <nav class="sidebar">
+            <header>
+                <div class="image-text">
+                    <span class="image">
+                        <img src="" alt="logo">
+                    </span>
+                    <div class="text header-text">
+                        <span class="name">Attendance</span>
+                    </div>
+                </div>
+            </header>
+            <div class="menu-bar">
+                <div class="menu">
+                    <ul class="menu-list">
+                        <li class="nav-link sidebar-border">
+                            <a href="./home.html">
+                                <i class="fa-solid fa-house icon"></i>
+                                <span class="text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="./classes.html">
+                                <i class="fa-solid fa-graduation-cap icon"></i>
+                                <span class="text">Classes</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="./teacher.html">
+                                <i class="fa-solid fa-chalkboard-user icon"></i>
+                                <span class="text">Teacher's</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="./student.html">
+                                <i class="fa-solid fa-user-tie icon"></i>
+                                <span class="text">Student</span>
+                            </a>
+                        </li>
+                        <li class="nav-link sidebar-border">
+                            <a href="./attendance.html">
+                                <i class="fa-solid fa-chart-simple icon"></i>
+                                <span class="text">Attendance</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="#">
+                                <i class="fa-solid fa-right-from-bracket icon"></i>
+                                <span class="text">Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom-content">
+                <div class="theme-checkbox-container">
+                    <input type="checkbox" class="theme-checkbox">
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="navigation">
+        <div class="navbar">
+            <div class="menu" id="menuButton">
+                <i class="fa-solid fa-bars menu-btn"></i>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Search here">
+                <i class="fa-solid fa-magnifying-glass search-img"></i>
+            </div>
+            <div class="profile">
+                <img id="profileImage" src="./images/Profile.png" alt="profile">
+            </div>
+        </div>
+    </div>
+    <div class="heading">
+        <h1>Attendance</h1>
+    </div>
+
+    <div class="right">
+        <div class="select-sec">
+            <div class="main-sec">
+                <label for="select-class">Select Class</label>
+                <select id="select-class" class="option"></select>
+
+                <label for="attendance-type">Attendance-type</label>
+                <select id="attendance-type" class="option">
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                </select>
+
+                <label for="attendance-date">Attendance-Date</label>
+                <input type="date" id="attendance-date"  placeholder="Select Attendance-date">
+
+                <button id="take-attendance-btn" class="sub-btn">Take Attendance</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-box-attendance">
+        <div class="attendance-content">
+            <span id="display-span"> </span>
+            <button class="select-btn">Select all</button>
+            <div class="search-att">
+                <input type="text" placeholder="Search For student">
+                <i class="fa-solid fa-magnifying-glass search-img"></i>
+            </div>
+
+        </div>
+        <div class="teacher-sec">
+            <div class="show-student">
+                <span>Student Info</span>
+                <table cellspacing="0" id="studentTable">
+                    <thead>
+                        <tr>
+                            <th>Student Id</th>
+                            <th>Student Name</th>
+                            <th>Class Name</th>
+                            <th>Present</th>
+                            <th>Absent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="button-table">
+        <button class="cancel-btn" id="save-button">Save</button>
+        <button type="button" id="cancel-btn" class="cancel-btn">Cancel</button>
+    </div>
+   
+
+
+    <script src="./js/script.js"></script>
+    <script src="./js/attendance.js"></script>
+    <!-- <script src="./js/addattendence.js"></script> -->
+</body>
+
+<script>
+    // Function to fetch and display students
+    function fetchAndDisplayStudents() {
+        fetch('http://localhost:3000/students')
+            .then(response => response.json())
+            .then(students => {
+                const studentRowsHTML = students.map(student => `
+                    <tr>
+                        <td>${student.id}</td>
+                        <td>${student.firstName}</td>
+                        <td><input type="radio" name="attendance-${student.id}" value="present"> Present</td>
+                        <td><input type="radio" name="attendance-${student.id}" value="absent"> Absent</td>
+                    </tr>
+                `).join('');
+
+                document.querySelector('#studentTableBody').innerHTML = studentRowsHTML;
+            })
+            .catch(error => {
+                console.error('Error fetching students:', error);
+            });
+    }
+
+    // Call the function on DOMContentLoaded
+    document.addEventListener('DOMContentLoaded', fetchAndDisplayStudents);
+
+      // Get today's date
+  const today = new Date().toISOString().split('T')[0];
+  // Set the max attribute to today's date
+  document.getElementById('attendance-date').setAttribute('max', today);
+
+
+</script>
+
+</html>

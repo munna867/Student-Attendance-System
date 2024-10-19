@@ -1,0 +1,196 @@
+{
+  "classes": [
+    {
+      "className": "TYBBACA",
+      "teacherName": "Mrs. Jyoti Pandhare",
+      "studentLimit": "160",
+      "id": 1
+    }
+  ],
+  "teacher": [
+    {
+      "tName": "Mrs. Snehal Varhadi",
+      "Department": "BBACA",
+      "contact": "1234567895",
+      "subject": "Cybersecurity ",
+      "email": "snehalvarhadi@gmail.com",
+      "Address": "Pune",
+      "id": 2
+    },
+    {
+      "tName": "Mrs. Jyoti Pandhare",
+      "Department": "BBACA",
+      "contact": "1234567895",
+      "subject": "Python",
+      "email": "jyotipandhare@gmail.com",
+      "Address": "Pune",
+      "id": 3
+    },
+    {
+      "tName": "Mrs. Sujata Patil",
+      "Department": "BBACA",
+      "contact": "1234567899",
+      "subject": "Python",
+      "email": "sujatapatil@gmail.com",
+      "Address": "Pune",
+      "id": 4
+    },
+    {
+      "tName": "Mrs. Hemalata Chavan",
+      "Department": "BBACA",
+      "contact": "1234567895",
+      "subject": "Python",
+      "email": "hemlatachavan@gmail.com",
+      "Address": "Pune",
+      "id": 5
+    },
+    {
+      "tName": "Mr. Tulshiram Kamble",
+      "Department": "BBACA",
+      "contact": "1234567895",
+      "subject": "Java",
+      "email": "tulsiramkamble@gmail.com",
+      "Address": "Pune",
+      "id": 6
+    }
+  ],
+  "students": [
+    {
+      "firstName": "Manav",
+      "fatherName": "Rajesh",
+      "className": "TYBBACA",
+      "id": 1
+    },
+    {
+      "firstName": "Munna",
+      "fatherName": "Aktar",
+      "className": "TYBBACA",
+      "id": 2
+    },
+    {
+      "firstName": "Sahil",
+      "fatherName": "Tukaram",
+      "className": "TYBBACA",
+      "id": 3
+    },
+    {
+      "firstName": "Imran",
+      "fatherName": "Abdulrahim",
+      "className": "TYBBACA",
+      "id": 4
+    },
+    {
+      "firstName": "Pankti",
+      "fatherName": "Rajesh",
+      "className": "TYBBACA",
+      "id": 5
+    },
+    {
+      "firstName": "Aditya",
+      "fatherName": "Abc",
+      "className": "TYBBACA",
+      "id": 6
+    },
+    {
+      "firstName": "Abdul",
+      "fatherName": "xyz",
+      "className": "TYBBACA",
+      "id": 7
+    },
+    {
+      "firstName": "Snika",
+      "fatherName": "Abc",
+      "className": "TYBBACA",
+      "id": 8
+    },
+    {
+      "firstName": "Vishal",
+      "fatherName": "mno",
+      "className": "TYBBACA",
+      "id": 9
+    },
+    {
+      "firstName": "Nitu",
+      "fatherName": "qwe",
+      "className": "TYBBACA",
+      "id": 10
+    }
+  ],
+  "signup": [
+    {
+      "regmail": "manavpardeshi5@gmail.com",
+      "regname": "manav",
+      "regpass": "manav",
+      "profilePictureUrl": "/images/admin1.jpg",
+      "id": 1
+    },
+    {
+      "regmail": "munnatasewale@gmail.com",
+      "regname": "munna",
+      "regpass": "munna",
+      "profilePictureUrl": "/images/admin2.jpg",
+      "id": 2
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "user123",
+      "profilePictureUrl": "/images/admin1.jpg"
+    },
+    {
+      "id": 2,
+      "username": "user124",
+      "profilePictureUrl": "/images/admin2.jpg"
+    }
+  ],
+  "attendance": [
+    {
+      "className": "TYBBACA",
+      "date": "2024-10-18",
+      "attendanceRecords": [
+        {
+          "studentName": "Manav",
+          "status": "absent"
+        },
+        {
+          "studentName": "Munna",
+          "status": "absent"
+        },
+        {
+          "studentName": "Sahil",
+          "status": "absent"
+        },
+        {
+          "studentName": "Imran",
+          "status": "present"
+        },
+        {
+          "studentName": "Pankti",
+          "status": "present"
+        },
+        {
+          "studentName": "Aditya",
+          "status": "present"
+        },
+        {
+          "studentName": "Abdul",
+          "status": "present"
+        },
+        {
+          "studentName": "Snika",
+          "status": "present"
+        },
+        {
+          "studentName": "Vishal",
+          "status": "absent"
+        },
+        {
+          "studentName": "Nitu",
+          "status": "absent"
+        }
+      ],
+      "id": 1
+    }
+  ]
+}

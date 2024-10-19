@@ -1,0 +1,1838 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+:root {
+    --bg-color: #21c0ce;
+    --body-color: #e7e5e5;
+    --nav-bar: #F5F7F8;
+    --text-color: #FFFFFF;
+    --button: #17153B;
+
+    /* ===Transition=== */
+    --trans-02: all 0.2s ease;
+    --trans-03: all 0.3s ease;
+    --trans-04: all 0.4s ease;
+    --trans-05: all 0.5s ease;
+
+    /*===Dark mode colors=== */
+    --dark-body-color: #000000;
+    --dark-text-color: #FFFFFF;
+    --dark-nav-bar: #1d2226;
+    --dark-search-bar: #1e1e1e;
+}
+
+body {
+    height: 100vh;
+    background: var(--body-color);
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+
+
+.menu-list {
+    position: absolute;
+    top: 80px;
+    /* Adjust the margin as needed */
+    width: 100%;
+    left: 0;
+}
+
+.menu-btn {
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/*=====================================home page css here============================= */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 4vw;
+    padding: 10px 14px;
+    background-color: var(--bg-color);
+    transition: width 0.5s;
+    overflow: hidden;
+    z-index: 1;
+    /* Ensure sidebar is behind the navbar */
+}
+
+.sidebar.dark-mode {
+    background-color: var(--dark-nav-bar);
+}
+
+.sidebar:hover {
+    width: 15vw;
+}
+
+.sidebar header {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar header .image-text {
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .image-text img {
+    max-width: 100%;
+    height: auto;
+}
+
+.sidebar header .toggle {
+    position: absolute;
+    top: 50%;
+    right: -25px;
+    transform: translateY(-50%);
+    height: 25px;
+    width: 25px;
+    background-color: purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: #21c0ce;
+    font-size: 20px;
+}
+
+.sidebar-border{
+    border-bottom: 2px solid var(--text-color);
+}
+
+
+.sidebar .header-text .name {
+    display: none;
+}
+
+.sidebar:hover .header-text .name {
+    display: block;
+}
+
+.sidebar li {
+    height: 50px;
+    margin-top: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    /* Remove padding */
+    width: 100%;
+    /* Ensure full width */
+}
+
+.sidebar li .icon,
+.sidebar li .text {
+    font-size: 20px;
+    min-width: 30px;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.sidebar li .text {
+    display: none;
+    margin-left: 10px;
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.sidebar:hover li .text {
+    display: block;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.sidebar li a {
+    display: flex;
+    /* Ensure full width and height */
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: var(--trans-02);
+    padding: 0 10px;
+    /* Adjust padding as needed */
+}
+
+.sidebar.active {
+    width: 15vw;
+}
+
+.sidebar li a:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+    width: 100%;
+}
+
+/* Text visibility */
+.sidebar li .text {
+    display: none;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.sidebar.active li .text {
+    display: inline;
+    margin-left: 10px;
+    opacity: 1;
+    transform: translateX(0);
+}
+
+
+.bottom-content {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    text-align: center;
+    padding-left: 14px;
+}
+
+.theme-checkbox {
+    --toggle-size: 16px;
+    appearance: none;
+    width: 61px;
+    height: 30px;
+    background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
+    background-size: 205%;
+    background-position: 0;
+    transition: 0.4s;
+    border-radius: 99em;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    left: -15px;
+    /* Adjusted to ensure it stays within 5vw */
+}
+
+.theme-checkbox::before {
+    content: "";
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 0.25em;
+    left: 0.25em;
+    background: var(--button);
+    border-radius: 50%;
+    transition: 0.4s;
+}
+
+.theme-checkbox:checked::before {
+    left: calc(100% - 2.75em);
+}
+
+.theme-checkbox:checked {
+    background-position: 100%;
+}
+
+/* navbar */
+.navigation {
+    width: 100%;
+    background-color: var(--nav-bar);
+    padding: 10px 20px;
+    position: relative;
+    z-index: 2;
+    /* Ensure navbar is above the sidebar */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: margin-left 0.5s;
+    /* Smooth transition for shifting */
+}
+
+.menu img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    position: relative;
+}
+
+.search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.search input {
+    padding: 10px 40px 10px 10px;
+    border: none;
+    border-radius: 30px;
+    width: 230px;
+    background-color: lightgray;
+    color: var(--dark-body-color);
+    outline: none;
+}
+
+.search input::placeholder {
+    color: #aaa;
+    font-size: 15px;
+    padding: 10px;
+}
+
+.search .search-img {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+.profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+}
+
+
+/* Adjust navbar position when sidebar is hovered */
+.sidebar:hover~.navigation {
+    margin-left: 15vw;
+    /* Shift navbar when sidebar is expanded */
+}
+
+
+
+/* right section CSS code here  */
+/* Right section */
+.right {
+    margin-left: 110px;
+    /* Default gap between sidebar and right section */
+    margin-top: 20px;
+    /* Adjust top margin as needed */
+    padding: 0 10px;
+    display: flex;
+    gap: 25px;
+    /* Space between boxes */
+    align-items: center;
+    /* Align boxes at the top */
+}
+
+
+/* Style for each box */
+.box {
+    background-color: var(--dark-text-color);
+    border-radius: 8px;
+    position: relative;
+    padding: 10px;
+    gap: 20px;
+    text-align: center;
+    width: 325px;
+    height: 150px;
+    color: var(--dark-body-color); /* Ensure text color is visible */
+}
+
+.box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 3px;
+    background-color: var(--bg-color);
+}
+
+.box span {
+    color: var(--dark-body-color);
+    position: absolute; /* Change to absolute positioning */
+    bottom: 10px; /* Adjust positioning as needed */
+    left: 28px; /* Adjust positioning as needed */
+    font-size: 30px; /* Adjust font size for visibility */
+    font-weight: bold;
+}
+
+#classCount1 {
+    font-size: 78px;
+    bottom: 45px;
+    left: 54px;
+    color: var(--dark-body-color);
+}
+body.dark-mode #classCount1{
+    color: white;
+}
+#teacherCount1{
+    font-size: 78px;
+    bottom: 45px;
+    left: 54px;
+    color: var(--dark-body-color);
+}
+
+body.dark-mode #teacherCount1{
+    color: white;
+}
+
+#studentCount1{
+    font-size: 78px;
+    bottom: 45px;
+    left: 54px;
+    color: var(--dark-body-color);
+}
+
+body.dark-mode #studentCount1{
+    color: white;
+}
+
+#Extralec1{
+    font-size: 78px;
+    bottom: 45px;
+    left: 54px;
+    color: var(--dark-body-color);
+}
+
+body.dark-mode #Extralec1{
+    color: white;
+}
+.box .box3 {
+    color: var(--dark-body-color);
+    position: relative;
+    top: 60px;
+    left: 5px;
+    font-size: 30px;
+}
+
+.box .icon {
+    color: var(--bg-color);
+    position: relative;
+    top: 20px;
+    font-size: 73px;
+    left: 60px;
+    opacity: 60%;
+
+}
+
+.box .icon2 {
+    color: var(--bg-color);
+    position: relative;
+    top: 25px;
+    font-size: 70px;
+    left: 60px;
+    opacity: 60%;
+}
+
+.box .icon3 {
+    color: var(--bg-color);
+    position: relative;
+    top: 20px;
+    font-size: 70px;
+    left: -20px;
+    opacity: 60%;
+}
+
+/* Ensure right section adjusts with sidebar */
+.sidebar:hover~.right {
+    margin-left: 15vw;
+}
+
+.right-down {
+    top: 30px;
+    position: relative;
+    left: 120px;
+}
+
+.attendance-sec {
+    background-color: var(--dark-text-color);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    width: 60vw;
+    height: 60vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.attendance-sec::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 3px;
+    background-color: var(--bg-color);
+}
+
+
+.attendance-sec span {
+    left: 160px;
+    font-size: 30px;
+    color: var(--dark-body-color);
+}
+
+.tec-sec {
+    background-color: var(--dark-text-color);
+    border-radius: 8px;
+    padding: 15px;
+    margin-left: 15px;
+    text-align: center;
+    width: 30vw;
+    height: 40vh;
+    overflow-y: auto;
+    position: relative;
+    border-left: 4px solid var(--bg-color);
+}
+
+
+
+.tec-sec span {
+    left: 160px;
+    font-size: 30px;
+}
+
+.right-down {
+    display: flex;
+}
+
+.teacher-sec table{
+    margin: 10px;
+    width: 375px;
+    align-items: center; 
+}
+
+.teacher-sec th{
+    padding: 10px;
+    font-size: 20px;
+    border-bottom: solid 2px var(--bg-color);
+}
+
+#teachers td {
+    margin: 10px;
+    padding: 10px;
+    font-weight: 500;
+    border-bottom: 2px solid var(--bg-color);
+}
+body.dark-mode #teachers td {
+    color: var(--body-color);
+}
+
+.attendance-sec .attendance-table{
+    width: 800px;
+    margin: 10px;
+    align-items: center;
+}
+
+.attendance-sec .attendance-table th{
+    padding: 10px;
+    font-size: 20px;
+    width: 300px;
+    border-bottom: solid 2px var(--bg-color);
+}
+
+.attendance-sec .attendance-table td{
+    margin: 10px;
+    padding: 10px;
+    font-weight: 500;
+    font-size: 20px;
+    border-bottom: 2px solid var(--bg-color);
+}
+
+
+
+
+/* ================progress bar ========================= */
+.button-container {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+    justify-content: flex-start; /* Align buttons to the start of the container */
+}
+
+.button-container button {
+    flex: 1; /* Optional: Makes buttons take equal width */
+}
+
+
+
+
+
+
+
+
+/*=================================home section ends here============================ */
+
+
+/*==================================attendance section=============================== */
+.heading {
+    padding-left: 90px;
+}
+
+.main-sec {
+    display: flex;
+    position: relative;
+    gap: 20px;
+    flex-wrap: wrap;
+    top: -15px;
+}
+
+.select-sec .sub-btn {
+    right: -9%;
+    position: relative;
+    width: 150px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    bottom: 30px;
+}
+
+.select-sec .sub-btn::placeholder {
+    padding: 10px;
+
+}
+
+.main-sec label {
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.main-sec input {
+    width: 120px;
+    height: 30px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.main-sec input::placeholder {
+    padding: 10px;
+}
+
+.main-sec .option {
+    width: 100px;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 30px;
+}
+
+input[type="date"]::placeholder {
+    color: #888;
+}
+
+.main-box-attendance {
+    width: 93vw;
+    height: 75vh;
+    background-color: var(--text-color);
+    left: 90px;
+    top: -15px;
+    position: relative;
+}
+.main-box-attendance .show-student{
+    background-color: var(--dark-text-color);
+    border-radius: 8px;
+    top: 15px;
+    padding: 15px;
+    margin-left: 0px;
+    text-align: center;
+    width: 60vw;
+    height: 69vh;
+    overflow-y: auto;
+    position: relative;
+    overflow-x: hidden;
+    border-left: 2px solid var(--bg-color);
+}
+
+
+body.dark-mode .main-box-attendance {
+    background-color: var(--dark-nav-bar);
+}
+
+.search-att {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    top: 10px;
+}
+
+.search-att input {
+    padding: 10px 40px 10px 10px;
+    border: none;
+    border-radius: 30px;
+    width: 230px;
+    background-color: var(--nav-bar);
+}
+
+.search-att input::placeholder {
+    color: #aaa;
+    font-size: 15px;
+    padding: 10px;
+}
+
+.attendance-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.search-att .search-img {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    pointer-events: none;
+}
+
+.select-btn {
+    left: 70%;
+    padding: 5px;
+    position: absolute;
+    top: -10px;
+    width: 100px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.attendance-content span {
+    position: relative;
+    left: 20px;
+    font-size: 25px;
+    top: 5px;
+}
+
+/* Style radio buttons to look like checkboxes  */
+.attendance-radio {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #555;
+    display: inline-block;
+    position: relative;
+    border-radius: 4px;
+    /* Square shape */
+    margin: 0;
+    cursor: pointer;
+}
+
+.attendance-radio.present-radio:checked {
+    background-color: #4CAF50;
+    /* Green for Present */
+    border: 2px solid #4CAF50;
+}
+
+.attendance-radio.absent-radio:checked {
+    background-color: #F44336;
+    /* Red for Absent */
+    border: 2px solid #F44336;
+}
+
+.attendance-radio:checked::after {
+    content: '\2713';
+    /* Checkmark */
+    position: absolute;
+    color: white;
+    font-size: 18px;
+    top: -3px;
+    left: 2px;
+}
+
+.button-table{
+    position: relative;
+    display: flex;
+    width: 14vw;
+    /* padding: 6px; */
+    bottom: 100px;
+    left: 100px;
+}
+
+.button-table .cancle-btn{
+    margin-left: 10px;
+    position: relative;
+    left: 50px;
+}
+
+/* =====================progress barr============================================== */
+.attendance-sec {
+    position: relative;
+    padding: 10px;
+}
+
+.progress-container {
+    background-color: #f3f3f3;
+    border-radius: 5px;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #4caf50; /* Green color */
+    border-radius: 5px;
+    transition: width 0.4s ease; /* Smooth transition for width change */
+}
+
+#attendancePercentage {
+    margin-top: 5px; /* Spacing for the percentage text */
+}
+
+/*======================================class section CSS============================= */
+
+.add-class {
+    background-color: var(--dark-text-color);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    width: 30vw;
+    height: 60vh;
+    overflow-y: auto;
+    position: relative;
+    
+}
+
+.add-class::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 3px;
+    background-color: var(--bg-color);
+}
+
+
+.add-class span {
+    left: 100px;
+    font-size: 20px;
+    color: var(--dark-body-color);
+}
+
+.add-class label {
+
+    font-size: 25px;
+    padding: 5px;
+    display: flex;
+    margin-top: 10px;
+
+}
+
+.add-class input {
+    width: 25vw;
+    position: absolute;
+    left: 20px;
+    padding: 10px;
+    background-color: var(--body-color);
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.add-class button {
+    position: relative;
+    top: 40px;
+    padding: 13px;
+    right: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    cursor: pointer;
+}
+
+.show-class {
+    background-color: var(--dark-text-color);
+    border-radius: 8px;
+    padding: 15px;
+    margin-left: 15px;
+    text-align: center;
+    width: 60vw;
+    height: 40vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.show-class::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    width: 3px;
+    background-color: var(--bg-color);
+}
+
+.show-class span {
+    left: 160px;
+    font-size: 30px;
+}
+
+.show-class table {
+    margin: 10px;
+    width: 55vw;
+    align-items: center;
+
+}
+
+.show-class table th {
+    padding: 10px;
+    border-bottom: 2px solid var(--bg-color);
+
+}
+
+.show-class table td {
+    margin: 10px;
+    padding: 10px;
+    border-bottom: 2px solid var(--bg-color);
+}
+
+body.dark-mode .show-class table td {
+    color: white;
+}
+
+.show-class table button {
+    padding: 7px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-weight: 600;
+}
+.report, .delete-report:hover{
+    cursor: pointer;
+}
+.report{
+    color: var(--text-color);
+    background: var(--bg-color);
+}
+
+.right-down {
+    display: flex;
+}
+/* Style for the delete button */
+.delete-button {
+    background-color: #ff4d4d; /* Red color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+    background-color: #e60000; /* Darker red on hover */
+}
+
+
+
+
+/* *************************************Teacher page css************************************** */
+
+.add-teachers{
+    background-color: var(--dark-text-color);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    width: 30vw;
+    height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    margin-left: 15px;
+    overflow:auto;
+    overflow-x: hidden;
+    border-left: 3px solid var(--bg-color);
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px;
+    top: 0;
+    left: 0;
+}
+
+body.dark-mode .add-teachers,
+body.dark-mode .add-teachers span{
+    background: var(--dark-nav-bar);
+    color: var(--bg-color);
+}
+
+/* .add-teachers::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0;
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px; 
+    width: 3px;
+    background-color:var(--bg-color);
+} */
+
+
+.add-teachers span{
+    left: 100px;
+    font-size: 20px;
+    color: var(--dark-body-color);
+    font-weight: 700;
+}
+
+.add-teachers label{  
+  font-size: 20px;
+  padding: 5px;
+  display: flex;
+margin-top: 10px;
+
+
+}
+
+.add-teachers input{
+    width: 25vw;
+    position: absolute;
+    left: 20px;
+    padding: 10px;
+    background-color: var(--body-color);
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.add-teachers button{
+   
+    bottom: 10px;
+    left: 150px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    position: relative;
+    bottom: -9px;
+    left: 0px;
+    margin: 10px 0;
+}
+
+.inline-field{
+  display:flex;
+  justify-content: center;
+  gap: 10px;
+  height: 75px;
+}
+
+.inline-field .department-sec {
+    height: 100px;
+    
+}
+
+.inline-field .department-sec label{
+    text-align: left;
+    position: relative;
+    left: -70px;
+
+}
+
+.inline-field .department-sec input{
+    width: 10vw;
+    gap: 10px;
+    /* margin: 10px; */
+    position: relative;
+    left: -45px;
+}
+
+.inline-field .subject-sec {
+    height: 100px;
+    width: 100px;
+}
+
+.inline-field .subject-sec label{
+    position: relative;
+    left: -16px;
+}
+
+.inline-field .subject-sec input{
+    width: 10vw;
+    gap: 10px;
+    /* display: flex; */
+    /* margin: 10px; */
+    position: relative;
+    left: -12px;
+}
+
+.show-class{
+    background-color: var(--dark-text-color);
+    border-radius: 8px;
+    padding: 15px;
+    margin-left: 15px;
+    text-align: center;
+    width: 60vw;
+    height: 40vh;
+    overflow-y: auto;
+    position: relative;
+}
+.show-class::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px; 
+    width: 3px;
+    background-color:var(--bg-color);
+}
+
+body.dark-mode .show-class,
+body.dark-mode .show-class span{
+    background: var(--dark-nav-bar);
+    color: var(--bg-color);
+}
+
+.show-class span{
+    left: 160px;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.show-class table{
+    margin: 10px;
+    width: 55vw;
+    align-items: center;
+    
+}
+
+.show-class table th{
+    padding: 10px;
+    border-bottom: 2px solid var(--bg-color);
+
+}
+
+.show-class table td{
+    margin: 10px;
+    padding: 1px;
+    border-bottom: 2px solid var(--bg-color);
+}
+
+.show-class table button{
+    padding: 7px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: none;
+    color: var(--text-color);
+    font-weight: 600;
+    position: relative;
+    bottom: 11px;
+    width: 85px;
+}
+
+
+.right-down{
+    display: flex;
+}
+
+
+
+
+
+/* **********************************Student Page Css *************************************/
+.add-student{
+    background-color: var(--dark-text-color);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    width: 30vw;
+    height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    margin-left: 15px;
+    overflow:auto;
+    overflow-x: hidden;
+    border-left: 3px solid var(--bg-color);
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px;
+    top: 0;
+    left: 0;
+}
+
+body.dark-mode .add-student,
+body.dark-mode .add-student span{
+    background: var(--dark-nav-bar);
+    color: var(--bg-color);
+}
+
+/* .add-teachers::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 0;
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px; 
+    width: 3px;
+    background-color:var(--bg-color);
+} */
+
+
+.add-student span{
+    left: 100px;
+    font-size: 20px;
+    color: var(--dark-body-color);
+    font-weight: 700;
+}
+
+.add-student label{  
+  font-size: 20px;
+  padding: 5px;
+  display: flex;
+margin-top: 10px;
+
+
+}
+
+.add-student input{
+    width: 25vw;
+    position: absolute;
+    left: 20px;
+    padding: 10px;
+    background-color: var(--body-color);
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.add-student button{
+   
+    bottom: 10px;
+    left: 150px;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    position: relative;
+    bottom: -9px;
+    left: 0px;
+    margin: 10px 0;
+    cursor: pointer;
+}
+
+.inline-field{
+  display:flex;
+  justify-content: center;
+  gap: 10px;
+  height: 75px;
+}
+
+.inline-field .department-sec {
+    height: 100px;
+    
+}
+
+.inline-field .department-sec label{
+    text-align: left;
+    position: relative;
+    left: -70px;
+
+}
+
+.inline-field .department-sec input{
+    width: 10vw;
+    gap: 10px;
+    /* margin: 10px; */
+    position: relative;
+    left: -70px;
+}
+
+.inline-field .subject-sec {
+    height: 100px;
+    width: 100px;
+}
+
+.inline-field .subject-sec label{
+    position: relative;
+    left: -16px;
+}
+
+.inline-field .subject-sec input{
+    width: 12vw;
+    gap: 10px;
+    /* display: flex; */
+    /* margin: 10px; */
+    position: relative;
+    left: -12px;
+}
+
+.show-student{
+    background-color: var(--dark-text-color);
+    border-radius: 8px;
+    padding: 15px;
+    margin-left: -20px;
+    text-align: center;
+    width: 60vw;
+    height: 80vh;
+    overflow-y: auto;
+    position: relative;
+    overflow-x: hidden;
+    border-left: 2px solid var(--bg-color);
+}
+/* .show-student::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-top-left-radius: 10px; 
+    border-bottom-left-radius: 10px; 
+    width: 3px;
+    background-color:var(--bg-color);
+} */
+
+body.dark-mode .show-student,
+body.dark-mode .show-student span{
+    background: var(--dark-nav-bar);
+    color: var(--bg-color);
+}
+
+.show-student span{
+    left: 160px;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+.show-student table{
+    margin: 10px;
+    width: 55vw;
+    font-size: 25px;
+    align-items: center;
+    
+}
+
+.show-student table th{
+    padding: 10px;
+    border-bottom: 2px solid var(--bg-color);
+
+}
+
+.show-student table td{
+    margin: 10px;
+    padding: 5px;
+    border-bottom: 2px solid var(--bg-color);
+}
+
+body.dark-mode .show-student table td{
+    color: white;
+}
+
+.show-student table button{
+    padding: 7px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: none;
+    background-color: red;
+    color: var(--text-color);
+    font-weight: 600;
+    position: relative;
+    bottom: 11px;
+    width: 85px;
+}
+
+
+
+/* ======================Register css================ */
+.wrapper{
+    width: 30%;
+    height: 70vh;
+    justify-content: center;
+    padding: 2rem 1rem;
+    margin: 0px auto;
+    background-color: #fff;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 20px 35px rgba(0, 0,0, 0.1);
+    position: relative;
+    right: 10%;
+}
+.main{
+    justify-content: center;
+    padding-top: 200px;
+}
+.wrapper .lab1{
+    font-size: 17px;
+    text-align: left;
+    font-weight: bold;
+}
+
+
+h1{
+    font-size: 2rem;
+    color: var(--bg-color);
+    margin-bottom: 1.2rem;
+}
+form input{
+    width: 92%;
+    outline: none;
+    border: 1px solid var(--bg-color);
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 20px;
+    background: #e4e4e4;
+
+}
+button{
+    font-size: 1rem;
+    margin-top: 1.5rem;
+    padding: 10px 0;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    width: 92%;
+    background:var(--bg-color);
+    cursor: pointer;
+}
+button:hover{
+    background-color: #3498db;;
+}
+button{
+    text-decoration: none;
+    color: white;
+}
+
+button a{
+    color: white;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0;
+    width: 50%;
+}
+
+input:focus{
+    border: 1px solid rgb(192, 192, 192);
+}
+.term{
+    margin-top: 0.2rem;
+}
+.term input{
+    height: 1em;
+    width: 1em;
+    vertical-align: middle;
+    cursor: pointer;
+}
+.term label{
+    font-size: 0.9rem;
+}
+.term a{
+    color: rgb(17, 107, 143);
+    text-decoration: none;
+}
+.member{
+    font-size: 0.9rem;
+    margin-top: 1.4rem;
+    color: #636363;
+}
+.member a{
+    color: rgb(17, 107, 143);
+    text-decoration: none;
+}
+.recover{
+    text-align: right;
+    font-size: 0.9rem;
+    margin: 0.3rem 1.4rem 0 0;
+}
+.recover a{
+    text-decoration: none;
+    color: #464647;
+}
+
+
+/* ===================================login css=========================== */
+.container{
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+}
+
+.container p{
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.3px;
+    margin: 20px 0;
+}
+
+.container span{
+    font-size: 12px;
+}
+
+.container a{
+    color: #333;
+    font-size: 13px;
+    text-decoration: none;
+    margin: 15px 0 10px;
+}
+
+.container button{
+    background-color: #512da8;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.container button.hidden{
+    background-color: transparent;
+    border-color: #fff;
+}
+
+.container form{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+
+.container input{
+    background-color: #eee;
+    border: none;
+    margin: 8px 0;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 8px;
+    width: 100%;
+    outline: none;
+}
+
+.form-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in{
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container.active .sign-in{
+    transform: translateX(100%);
+}
+
+.sign-up{
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.active .sign-up{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: move 0.6s;
+}
+
+@keyframes move{
+    0%, 49.99%{
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100%{
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.social-icons{
+    margin: 20px 0;
+}
+
+.social-icons a{
+    border: 1px solid #ccc;
+    border-radius: 20%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 3px;
+    width: 40px;
+    height: 40px;
+}
+
+.toggle-container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+    border-radius: 150px 0 0 100px;
+    z-index: 1000;
+}
+
+.container.active .toggle-container{
+    transform: translateX(-100%);
+    border-radius: 0 150px 100px 0;
+}
+
+.toggle{
+    background-color: #512da8;
+    height: 100%;
+    background: linear-gradient(to right, #5c6bc0, #512da8);
+    color: #fff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.container.active .toggle{
+    transform: translateX(50%);
+}
+
+.toggle-panel{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 30px;
+    text-align: center;
+    top: 0;
+    transform: translateX(0);
+    transition: all 0.6s ease-in-out;
+}
+
+.toggle-left{
+    transform: translateX(-200%);
+}
+
+.container.active .toggle-left{
+    transform: translateX(0);
+}
+
+.toggle-right{
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.active .toggle-right{
+    transform: translateX(200%);
+}
+.main-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkdata{
+    left: 50px;
+    position: relative;
+    top: 10px;
+}
+.login-img{
+    width: 70vw;
+    height: 100vh;
+    position: relative;
+    left: -40px;
+}
+
+
+/* ==================dark mode CSS code here====================================== */
+body.dark-mode {
+    background: var(--dark-body-color);
+    color: var(--dark-text-color);
+}
+
+body.dark-mode .sidebar li a:hover {
+    background: var(--text-color);
+    color: var(--dark-nav-bar);
+    width: 100%;
+}
+
+body.dark-mode .theme-checkbox::before {
+    background: var(--text-color);
+}
+
+body.dark-mode .navigation {
+    background: var(--dark-nav-bar);
+}
+
+body.dark-mode .search input {
+    background-color: var(--dark-search-bar);
+    /* Or any color you want */
+}
+
+body.dark-mode .search .search-img {
+    color: var(--text-color);
+    /* Or any color you want */
+}
+
+body.dark-mode .attendance-sec,
+body.dark-mode .attendance-sec span {
+    background: var(--dark-nav-bar);
+    color: var(--bg-color);
+}
+
+body.dark-mode .tec-sec,
+body.dark-mode .tec-sec span {
+    background: var(--dark-nav-bar);
+    color: var(--bg-color);
+}
+
+body.dark-mode .heading {
+    color: var(--bg-color);
+}
+
+body.dark-mode label {
+    color: var(--bg-color);
+}
+
+body.dark-mode .main-sec input::placeholder,
+body.dark-mode input {
+    background-color: var(--dark-search-bar);
+    color: var(--text-color);
+}
+
+body.dark-mode .main-sec .option {
+    background-color: var(--body-color);
+    color: var(--dark-body-color);
+}
+
+body.dark-mode .main-sec input[type="date"] {
+    background-color: #f0f0f0;
+    /* Change background color */
+    color: #333;
+    /* Change text color */
+    border: 2px solid #007bff;
+    /* Change border color */
+    border-radius: 4px;
+    /* Round corners */
+    padding: 8px 12px;
+    /* Add padding */
+    font-size: 16px;
+    /* Increase font size */
+}
+
+body.dark-mode .add-class,
+body.dark-mode .add-class span {
+    background: var(--dark-nav-bar);
+    color: var(--bg-color);
+}
+
+body.dark-mode .show-class,
+body.dark-mode .show-class span {
+    background: var(--dark-nav-bar);
+    color: var(--bg-color);
+}
+
+body.dark-mode .box,
+body.dark-mode .box span {
+    background: var(--dark-nav-bar);
+    color: white;
+}
+
+body.dark-mode .box .fa-solid {
+    color:white;
+}
+
+
+/* ***************************Media Query for 1080 px  ********************************/
+
+@media (max-width:1920px) {
+     
+    .box{
+        width: 260px;
+    } 
+    .box .icon, .box .icon2 , .box .icon3 {
+        font-size: 60px;
+    }
+    .box .box3{
+        top: 68px;
+        font-size: 26px;
+    }
+    .sidebar{
+        width: 5vw;
+    }
+
+    .attendance-sec{
+        height: 53vh;
+    }
+    .add-class {
+        height: 80vh;
+        left: -30px;
+    }
+    .show-class{
+        height: 80vh;
+        margin-left: -15px;
+    }
+    .inline-field .department-sec label{
+        left: -46px;
+    }
+    .inline-field .department-sec input {
+        left: -43px;
+    }
+    .tec-sec{
+        width: 26vw;
+    }
+}
+
+
+@media (max-width:1921px){
+    .box {
+        width: 325px;
+    }
+    .tec-sec {
+        width: 29vw;
+        height: 50vh;
+    }
+    .attendance-sec {
+        height: 60vh;
+    }
+    .inline-field .department-sec label {
+        left: -74px;
+    }
+    .inline-field .department-sec input {
+        left: -70px;
+    }
+    .inline-field .subject-sec input{
+        width: 10vw;
+    }
+}

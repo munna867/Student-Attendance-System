@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance System - Classes</title>
+    <!-- Custom CSS link -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- Font Awesome CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <!-- Sidebar code here -->
+
+    <div class="left">
+        <nav class="sidebar">
+            <header>
+                <div class="image-text">
+                    <span class="image">
+                        <img src="" alt="logo">
+                    </span>
+                    <div class="text header-text">
+                        <span class="name">Attendance</span>
+                    </div>
+                </div>
+            </header>
+            <div class="menu-bar">
+                <div class="menu">
+                    <ul class="menu-list">
+                        <li class="nav-link sidebar-border">
+                            <a href="./home.html">
+                                <i class="fa-solid fa-house icon"></i>
+                                <span class="text">Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="#">
+                                <i class="fa-solid fa-graduation-cap icon"></i>
+                                <span class="text">Classes</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="./teacher.html">
+                                <i class="fa-solid fa-chalkboard-user icon"></i>
+                                <span class="text">Teacher's</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="./student.html">
+                                <i class="fa-solid fa-user-tie icon"></i>
+                                <span class="text">Student</span>
+                            </a>
+                        </li>
+                        <li class="nav-link sidebar-border">
+                            <a href="./attendance.html">
+                                <i class="fa-solid fa-chart-simple icon"></i>
+                                <span class="text">Attendance</span>
+                            </a>
+                        </li>
+                        <li class="nav-link">
+                            <a href="#" id="logoutButton">
+                                <i class="fa-solid fa-right-from-bracket icon"></i>
+                                <span class="text">Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bottom-content">
+                <div class="theme-checkbox-container">
+                    <input type="checkbox" class="theme-checkbox">
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Sidebar code ends here -->
+
+    <!-- Navbar code here -->
+    <div class="navigation">
+        <div class="navbar">
+            <div class="menu" id="menuButton">
+                <i class="fa-solid fa-bars menu-btn"></i>
+            </div>
+            <div class="search">
+                <input type="text" placeholder="Search here">
+                <i class="fa-solid fa-magnifying-glass search-img"></i>
+            </div>
+            <div class="profile">
+                <img id="profileImage" src="./images/Profile.png" alt="profile">
+            </div>
+        </div>
+    </div>
+    <!-- Navbar code ends here -->
+
+    <!-- Right section start here -->
+
+    <div class="main-right-down">
+        <div class="right-down">
+            <div class="add-class">
+                <span>Add Classes</span>
+                <form id="classForm" onsubmit=" addClass(event)">
+                    <label for="className">Class Name</label>
+                    <input type="text" placeholder="Class Name" id="className" name="className" required><br><br>
+                    <label for="teacherName">Class Teacher</label>
+                    <input type="text" placeholder="Teacher Name" id="teacherName" name="teacherName" required><br><br>
+                    <label for="studentLimit">Student Limit</label>
+                    <input type="number" placeholder="Student limit" id="studentLimit" name="studentLimit"
+                        required><br><br>
+                    <button type="submit">Submit</button>
+                </form>
+
+            </div>
+            <div class="teacher-sec">
+                <div class="show-class">
+                    <span>Classes</span>
+                    <table cellspacing="0" id="classesTable">
+                        <thead>
+                            <tr>
+                                <th>Class ID</th>
+                                <th>Class Name</th>
+                                <th>Class Teacher</th>
+                                <th>Student Limit</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Classes will be appended here -->
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right section ends here -->
+
+    <script src="./js/script.js"></script>
+    <script src="./js/classes.js"></script>
+</body>
+<script>
+    // Example code for testing
+    console.log("Testing script");
+</script>
+
+</html>

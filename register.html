@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Attendance System</title>
+    <link rel="stylesheet" href="./css/style.css">
+   
+
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="image-log">
+            <img class="login-img" src="./images/login.png" alt="">
+        </div>
+        <div class="wrapper">
+            <h1>Sign Up</h1>
+            <form id="signupForm" onsubmit="handleSignup(event)">
+                <label for="regmail">Email:</label>
+                <input type="email" id="regmail" required>
+                
+                <label for="regname">Username:</label>
+                <input type="text" id="regname" required>
+                
+                <label for="regpass">Password:</label>
+                <input type="password" id="regpass" required>
+                
+                <label for="profilePicture">Profile Picture:</label>
+                <input type="file" id="profilePicture" accept="image/*">
+                
+                <button type="submit" id="signupButton">Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <script src="./js/register.js"></script>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/compressorjs/1.1.0/compressor.min.js"></script>
+</html>
